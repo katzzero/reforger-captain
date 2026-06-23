@@ -1,6 +1,6 @@
 services:
   reforger-admin:
-    build: .
+    image: ghcr.io/katzzero/reforger-captain:latest
     container_name: reforger-admin
     restart: always
     ports:

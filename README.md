@@ -18,26 +18,49 @@ Web-based admin panel for managing Arma Reforger dedicated servers. Change scena
 
 ## Quick Start
 
-1. Clone this repo:
+1. Create a directory for your config:
    ```bash
-   git clone https://github.com/katzzero/reforger-captain.git
-   cd reforger-captain
+   mkdir reforger-captain && cd reforger-captain
    ```
 
 2. Create your `.env` file:
    ```bash
-   cp .env.example .env
+   cat > .env << 'EOF'
+   SERVER_CONFIG_PATH=/path/to/your/server.json
+   RCON_PASSWORD=your_rcon_password
+   EOF
    ```
-   Edit `.env` and set:
-   - `SERVER_CONFIG_PATH` — path to your Arma Reforger `server.json`
-   - `RCON_PASSWORD` — must match `rcon.password` in `server.json`
 
-3. Start:
+3. Download the compose file:
+   ```bash
+   curl -O https://raw.githubusercontent.com/katzzero/reforger-captain/main/docker-compose.yml
+   curl -O https://raw.githubusercontent.com/katzzero/reforger-captain/main/admin-config.json
+   ```
+
+4. Start:
    ```bash
    docker compose up -d
    ```
 
-4. Open `http://your-server:8080` and log in with your RCON password.
+5. Open `http://your-server:8080` and log in with your RCON password.
+
+### Build from source
+
+If you prefer to build locally instead of pulling the image:
+
+```bash
+git clone https://github.com/katzzero/reforger-captain.git
+cd reforger-captain
+```
+
+Edit `docker-compose.yml` and replace `image:` with `build: .`:
+```yaml
+services:
+  reforger-admin:
+    build: .
+```
+
+Then run `docker compose up -d`.
 
 ## Tabs
 
