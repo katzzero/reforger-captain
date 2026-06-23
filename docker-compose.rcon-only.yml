@@ -1,0 +1,12 @@
+services:
+  reforger-admin:
+    build: .
+    container_name: reforger-admin
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - MODE=rcon-only
+      - RCON_HOST=YOUR_SERVER_IP
+      - RCON_PORT=29999
+      - RCON_PASSWORD=your_rcon_password
